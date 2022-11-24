@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="./css/index.css" />
+      <title>StoryBook</title>
+   </head>
+   <body>
+      <div id="myModal" class="modal">
+         <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modalP" style="color:blue;"></p>
+            <br>
+            <div id="info">
+               <div id ="searchDiv">
+               </div>
+               <div id="left">
+                  <div class ="moveDown">
+                     <p>No likes</p>
+                  </div>
+               </div>
+               <div id="right">
+                  <div id="clr" class="likes1">
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <nav>
+         <div class="nav-left">
+            <a id="host">
+            <img src="./images/logo.png" alt="Logo" /></a>
+            <button class="button button4" onclick="search()">Search...</button>
+         </div>
+         <div class="nav-middle">
+            <a id="publicArea" href="#" class="active">
+            <i onclick="publicArea()" class="fa fa-home"></i>
+            </a>
+            <a id="friendsArea" href="#" >
+            <i onclick="friendsArea()" class="fa fa-users"></i>
+            </a>
+         </div>
+         <div class="nav-right">
+            <div class="tooltip">
+               <span class="tooltiptext">My Profile</span>
+               <a id="profileId">
+               <img id="pic" class="profile" />
+               </a>
+            </div>
+            <div class="tooltip">
+               <span class="tooltiptext">Notification</span>
+               <a href="#">
+               <i class="fa fa-bell"></i>
+               </a>
+            </div>
+            <div class="tooltip">
+               <span class="tooltiptext">Log off</span>
+               <a href="#">
+               <img  src="./images/icons8-sign-out-64.png" class="profile " onclick="logoff()"/>
+               </a>
+            </div>
+         </div>
+      </nav>
+      <div class="container">
+      <div class="left-panel">
+         <ul>
+            <li>
+               <img  id="pic1" class="profile" />
+               <p id="name"></p>
+            </li>
+            <li>
+               <i class="fa fa-user-friends"></i>
+               <p>Friends</p>
+            </li>
+            <li>
+               <i class="fa fa-play-circle"></i>
+               <p>Videos</p>
+            </li>
+            <li>
+               <i class="fa fa-flag"></i>
+               <p>Pages</p>
+            </li>
+            <li>
+               <i class="fa fa-users"></i>
+               <p>Groups</p>
+            </li>
+            <li>
+               <i class="fa fa-bookmark"></i>
+               <p>Bookmark</p>
+            </li>
+            <li>
+               <i class="fab fa-facebook-messenger"></i>
+               <p>Inbox</p>
+            </li>
+            <li>
+               <i class="fas fa-calendar-week"></i>
+               <p>Events</p>
+            </li>
+            <li>
+               <i class="fa fa-bullhorn"></i>
+               <p>Ads</p>
+            </li>
+            <li>
+               <i class="fas fa-hands-helping"></i>
+               <p>Offers</p>
+            </li>
+            <li>
+               <i class="fas fa-briefcase"></i>
+               <p>Jobs</p>
+            </li>
+            <li>
+               <i class="fa fa-star"></i>
+               <p>Favourites</p>
+            </li>
+         </ul>
+         <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Advance</a>
+            <a href="#">More</a>
+         </div>
+      </div>
+      <div id="publicAreaPanel" class="middle-panel">
+         <div class="post create">
+            <div class="post-top">
+               <div class="dp">
+                  <img id="postPic" src="./images/default.jpg" alt="">
+               </div>
+               <input  id="postName" type="text" placeholder="" value="" onkeydown="if (event.keyCode == 13)
+               document.getElementById('postButton').click()"/>
+            </div>
+            <div class="post-bottom">
+               <div class="action">
+                  <i class="fa fa-video"></i>
+                  <span>Live video</span>
+               </div>
+               <div class="action" >
+                  <i class="fa fa-image"></i>
+                  <span>Photo/Video</span>
+               </div>
+               <div id="postButton" class="action" onclick="post()">
+                  <i class="fa fa-paper-plane"></i>
+                  <span>Post</span>
+               </div>
+            </div>
+         </div>
+         <div id="deleteMyPosts">
+            <div id="my-post"></div>
+         </div>
+         <div id="deletePosts">
+            <div id="posts"></div>
+         </div>
+      </div>
+      <div class="right-panel">
+         <div class="pages-section">
+            <div class="friends-section">
+               <h4>Friends</h4>
+               <div id="friendsRightPanel"></div>
+            </div>
+         </div>
+      </div>
+   </body>
+   <script>
+      document.addEventListener('keydown', function(event){
+      	if(event.key === "Escape"){
+            modal.style.display = "none";
+            document.body.classList.remove("stop-scrolling");
+      	}
+      });   
+      var modal = document.getElementById("myModal");
+      var btn = document.getElementById("myBtn");
+      var span = document.getElementsByClassName("close")[0];
+      
+      span.onclick = function() {
+        modal.style.display = "none";
+        document.body.classList.remove("stop-scrolling");
+      
+      }
+      
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+          document.body.classList.remove("stop-scrolling");
+      
+        }
+      }
+   </script>
+   <script src="../controller/homepageController.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+</html>
