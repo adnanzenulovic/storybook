@@ -13,17 +13,17 @@ A social networking site. Backend in focus.
 
 
 
-Clone repository:
+###Clone repository:
 
 ```
 git clone https://github.com/adnanzenulovic/storybook.git
 ```
 
-Demo:
-Clone repository:
+###Demo
 
 ```
 https://storybook1ado.herokuapp.com/
+```
 
 ### Run project:
 
